@@ -1,0 +1,6 @@
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+deployer1-key
+.DS_Store

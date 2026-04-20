@@ -1,0 +1,38 @@
+---
+- name: Configure Global Automated Mesh Worker
+  hosts: mesh_nodes
+  become: yes
+  tasks:
+    - name: Update apt cache and upgrade system
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker is started and enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Install K3s (Lightweight Kubernetes)
+      shell: curl -sfL https://get.k3s.io | sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: Wait for K3s to initialize
+      pause:
+        seconds: 15
+
+    - name: Deploy a test Nginx Pod
+      shell: /usr/local/bin/kubectl run nginx-mesh --image=nginx --port=80
+      register: deploy_result
+      ignore_errors: yes
+
+    - name: Expose Nginx via NodePort
+      shell: /usr/local/bin/kubectl expose pod nginx-mesh --type=NodePort --port=80
+      ignore_errors: yes
