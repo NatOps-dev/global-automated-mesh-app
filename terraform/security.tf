@@ -1,7 +1,7 @@
 #1. SSH Pair (This uploads your public key to the AWS region)
 resource "aws_key_pair" "mesh_deployer1-key" {
   key_name = "mesh_deployer1-key"
-  public_key = file("../deployer1-key.pub")
+  public_key = file("./deployer1-key.pub")
  
 }
 
