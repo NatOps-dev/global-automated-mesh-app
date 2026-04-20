@@ -16,7 +16,7 @@ resource "aws_security_group" "mesh_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["44.246.216.153/32"]
+    cidr_blocks = ["54.201.200.246/32"]
   }
 
 #Inbound Allow HTTP (Port 80) for nginx
