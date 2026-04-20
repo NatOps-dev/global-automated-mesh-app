@@ -3,4 +3,5 @@
 *.tfstate.backup
 .terraform.lock.hcl
 deployer1-key
+deployer1-key.pub
 .DS_Store

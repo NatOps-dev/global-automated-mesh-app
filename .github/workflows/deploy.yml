@@ -34,5 +34,6 @@ jobs:
           cd ansible
           # This assumes you store your private key in GitHub Secrets
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../deployer1-key
-          chmod 400 ../deployer1-key
+          chmod 400 deployer1-key
+          cd ansible
           ansible-playbook -i inventory.ini setup.yml
