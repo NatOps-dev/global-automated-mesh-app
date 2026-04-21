@@ -9,7 +9,7 @@ resource "aws_instance" "mesh_worker" {
   # Linking to the networking we built in vpc.tf and security.tf
   subnet_id = aws_subnet.mesh_public_subnet.id
   security_groups = [aws_security_group.mesh_sg.id]
-  key_name = aws_key_pair.mesh_deployer1-key.key_name
+  key_name = aws_key_pair.deployer2-final-key.key_name
 
   tags = {
     Name = " mesh-worker-node"
