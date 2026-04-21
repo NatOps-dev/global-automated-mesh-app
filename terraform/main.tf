@@ -9,7 +9,7 @@ resource "aws_instance" "mesh_worker" {
   security_groups = [aws_security_group.mesh_sg.id]
   
   # This reference now matches the resource name in security.tf
-  key_name        = aws_key_pair.deployer2-final-key.key_name
+  key_name        = aws_key_pair.final-key.key_name
 
   tags = {
     Name      = "mesh-worker-node"
