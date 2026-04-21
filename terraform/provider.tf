@@ -9,6 +9,7 @@ terraform {
   }
 }
 
+# Configure the AWS provider
 provider "aws" {
   region = "us-west-2"
   # profile = "C_jhay"
