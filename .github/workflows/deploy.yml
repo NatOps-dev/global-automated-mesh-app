@@ -31,9 +31,12 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
+          # 1. Create the key in the root directory where the runner starts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > final-key
+          chmod 400 final-key
+          
+          # 2. Navigate to the ansible folder
           cd ansible
-          # This assumes you store your private key in GitHub Secrets
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../deployer1-key
-          chmod 400 deployer1-key
-          cd ansible
-          ansible-playbook -i inventory.ini setup.yml
+          
+          # 3. Run the playbook, pointing to the key in the parent directory (../)
+          ansible-playbook -i inventory.ini setup.yml --private-key ../final-key -u ubuntu
