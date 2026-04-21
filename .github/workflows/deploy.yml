@@ -31,10 +31,10 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
-          # 1. Create the key in the root directory
+          # 1. Create the key at the root so the path is simple
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > final-key
           chmod 400 final-key
           
-          # 2. Navigate to ansible and run the playbook
-          cd ansible
-          ansible-playbook -i inventory.ini setup.yml --private-key ../final-key -u ubuntu
+          # 2. Run Ansible from the root, pointing to the inventory inside the folder
+          # Use -u ubuntu because your AMI is Ubuntu 24.04
+          ansible-playbook -i ansible/inventory.ini ansible/setup.yml --private-key ./final-key -u ubuntu
