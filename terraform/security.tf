@@ -1,8 +1,8 @@
 # #1. SSH Pair (This uploads your public key to the AWS region)
 resource "aws_key_pair" "final-key" {
   key_name   = "final-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDL5jXzEg8ZLsYko6MzkEUwj8XU5BwCt/NW9I3GmXz2nY+lyWGcy9gAzXFQS/Ap1TaG/VfA10fSRjGYhi1dHwSsNpMVBQHwpd2J2IKih0hh4Woe2uqZKfwTgFbViZkR7i/pxYi4dq8RZ2tDlFz2tM+VwGzx+/a6+mLcf7SOZ6P2SfNZ1GJAT7+zOrSOIoV+vAnHjS6QAhTJcaTNh8ahHUKCFpsomXxKuX/BEnWhVtRaXu04WpTQu1KXaL+oOqoEut+MrWqCtowqZvQMrH0v7pbgD5ERogMLn1M8jHaUJHTJa5Vb8D9RKIKtdLxuKNL8VBxuP0/tyV71u9Ees2o0uPAlQudyKHjQjKRgcn17HHRByICvtF1IH1YhiLuQDGyl3NA/soQLdbKZcMIdo03olbRc6B8omN+fVz5rkSdGbM2tvkRqNUu+j368YHXrDDAeCawfNrL01hAUnzAQz6Y/hbuLIynYv/G95qMI4By+sSm+6ldT2jWZee8Yvft02omk6Wc= nathub@Nathaniels-MacBook-Pro.local"
-}
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC3P3qQppN5Ppdz0MIbJrTNoe2Tc5sDzWShUUC66l+SA37u6QAbafXRzi4Z3yt+aFKaQeHPddZzjXo85ZvXO6eD+grPWtUFgZqrTcys5ymfw/wUvHsKUIRrShSbCWX6sHTHqj+9ql/6AsdETORLw5BN8+SNKeR5x3Z5aeUkSqfBjo/UOXe/TywfDBCBE6izost95tjILItvslYvDnWrQb7tfvf+Zn3HYiIBspu6w8JonsIMRGowzpCt0YJPzobxcFmgTAVuDF5kifNVoY4/7dtimKdgl9YdvK85NtMljyfvFNSLiKMZzamgnywWhB6cD0YdPDR3kkcqDGh3tgVFPRYNxw/MxR6c2nG+D0ZmURyRSoMj9ljVN9oCfe/PF2VSyAaZ9ScAOycN0l7SxfWTTIC0lJ3iFxKfwSwvnVTtP4c/IU0hIA68vkrMp2GR0QzpiHHQUCbVY7VVAcOtvtK/iJNBTWHjGzHFOdbL2So4wU8rbKnD2bMdzTGDgUfIFObqU5CN9Dv7LEf5poyDbWM8oHRJC1NWk2WQBnq3ZzJuQcQXMHxNOtF0ZKBJB6fCGofxxdO+jAKzroAQOyZtfuUSpMpSi5z/BSkrQeYY7QaAwtulcSeWs6GPqegLznK0a0ZB8MVhZ+Dkm+XGWs6VDyaSkv311kUkbidFTMAwNCHcUhm3xQ== nathub@Galaxy-A56-5G"
+    }
 
 # #2 Security Group (The Firewall)
 resource "aws_security_group" "mesh_sg" {
