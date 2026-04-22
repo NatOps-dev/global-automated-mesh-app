@@ -10,7 +10,6 @@ resource "aws_instance" "mesh_worker" {
   
   # This reference now matches the resource name in security.tf
   key_name        = aws_key_pair.final-key.key_name
-
   tags = {
     Name      = "mesh-worker-node"
     Project   = "Global-Automated-Mesh"
