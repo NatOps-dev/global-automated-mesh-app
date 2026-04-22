@@ -15,7 +15,8 @@ resource "aws_security_group" "mesh_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["34.213.162.113/32"]
+    # cidr_blocks = ["34.213.162.113/32"]
+    cidr_blocks = ["0.0.0.0/0"] # For testing, allow from anywhere. In production, restrict to your IP or Ansible control node.
   }
 
   # Inbound Allow HTTP (Port 80) for nginx
