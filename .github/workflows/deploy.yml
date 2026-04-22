@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  terraform:
+  terraform-ansible:
     name: "Infrastructure & Config"
     runs-on: ubuntu-latest
     steps:
@@ -19,6 +19,7 @@ jobs:
           terraform_version: 1.7.0
 
       - name: Terraform Init & Apply
+        id: tf_apply
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -26,14 +27,24 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve
+          # This captures the new IP and makes it available to the next steps
+          echo "NEW_IP=$(terraform output -raw public_ip)" >> $GITHUB_ENV
+
+      - name: Wait for SSH to be ready
+        run: |
+          echo "Waiting for instance at ${{ env.NEW_IP }} to boot..."
+          sleep 30
 
       - name: Run Ansible Setup
         env:
           ANSIBLE_HOST_KEY_CHECKING: "False"
         run: |
-          # 1. Create the key at the root directory
+          # 1. Create the key at the root directory from GitHub Secrets
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ./final-key
           chmod 400 ./final-key
           
-          # 2. Run Ansible from the root, pointing to the files clearly
-          ansible-playbook -i ansible/inventory.ini ansible/setup.yml --private-key ./final-key -u ubuntu
+          # 2. Run Ansible, passing the NEW_IP dynamically 
+          ansible-playbook -i ansible/inventory.ini ansible/setup.yml \
+            --extra-vars "TARGET_IP=${{ env.NEW_IP }}" \
+            --private-key ./final-key \
+            -u ubuntu
