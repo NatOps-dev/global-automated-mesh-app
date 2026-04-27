@@ -19,7 +19,7 @@ resource "aws_subnet" "mesh_public_subnet" {
   availability_zone = "us-west-2a"
 
   tags = {
-    Name = "mesh_public_subnet"
+    Name = "mesh_public_subnet" #Use a descriptive name for the subnet
   }
 }
 
