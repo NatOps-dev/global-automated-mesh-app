@@ -28,8 +28,8 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve
-          # This captures the new IP and makes it available to the next steps
-          echo "NEW_IP=$(terraform output -raw public_ip)" >> $GITHUB_ENV
+          # Use the correct output name: instance_public_ip
+          echo "NEW_IP=$(terraform output -raw instance_public_ip)" >> $GITHUB_ENV
 
       - name: Wait for SSH to be ready
         run: |

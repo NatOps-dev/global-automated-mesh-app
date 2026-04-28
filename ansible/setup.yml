@@ -58,4 +58,3 @@
         kunbectl apply -f /home/ubuntu/k8s/ 
         
         
-        # Fixed typo in kubectl
