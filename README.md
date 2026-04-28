@@ -1,20 +1,37 @@
-# Global Automated Mesh App
-A Production-Grade, Multi-Cloud GitOps Architecture for Containerized Application Delivery.
+# Global Automated Mesh Application
+### End-to-End GitOps Infrastructure & Orchestration Pipeline
 
-## Problem Statement
-Manual cloud provisioning, system configuration, and software delivery is a bottleneck for agile teams, reducing system reliability and increasing operational costs. This project solves this by replacing manual steps with a resilient, validated, and automated infrastructure-as-code (IaC) pipeline.
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Ansible](https://img.shields.io/badge/ansible-%23EE0000.svg?style=for-the-badge&logo=ansible&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-## Solution
-This repository delivers a complete GitOps workflow. On any code commit, a continuous integration/deployment (CI/CD) pipeline automatically validates the code, provisions high-availability AWS infrastructure via Terraform, and bootstraps a Kubernetes (K3s) orchestration cluster on an EC2 worker node via Ansible.
+## 📄 Documentation
+[Download the Technical PDF Summary](./Nathaniel-Edet-Global-Mesh-README.pdf)
 
-## Key Automation Specializations Demonstrated:
-Infrastructure as Code (IaC): 100% automated AWS VPC and EC2 provisioning using Terraform.
+## 🌟 Project Overview
+This project serves as a comprehensive demonstration of modern Cloud Engineering practices. It automates the entire lifecycle of a containerized application—starting from a blank AWS account to a fully functional Kubernetes-orchestrated environment.
 
-Configuration Management: Automated OS hardening and software environment (Docker/K3s) setup using Ansible playbooks.
+## 🛠️ Key Engineering Features
+* **Declarative Infrastructure:** Entire AWS networking stack (VPC, IGW, Subnets) and compute (EC2) managed via Terraform.
+* **Dynamic Pipeline Integration:** Bridges the gap between Terraform and Ansible by dynamically passing ephemeral Public IPs via GitHub Action environment variables.
+* **Lightweight Orchestration:** Utilizes K3s (Kubernetes) to manage container lifecycles on resource-constrained instances.
+* **Automated Security:** Programmatic management of Security Groups and SSH key-pair injection.
 
-Continuous Delivery (CD): A Git-triggered, end-to-end pipeline using GitHub Actions to deploy containerized workloads (Nginx).
+## 🚀 How It Works
+1.  **Provisioning:** Terraform initializes the AWS resources and outputs the instance metadata.
+2.  **Synchronization:** GitHub Actions captures the `public_ip` and prepares the Ansible environment.
+3.  **Configuration:** Ansible installs Docker, K3s, and configures the host OS.
+4.  **Orchestration:** The final step deploys an Nginx mesh pod and exposes it via a NodePort service.
 
-Orchestration: Implementation of lightweight Kubernetes (K3s) for scalable container management.
+## 📁 Repository Structure
+* `/terraform`: HCL files for AWS infrastructure.
+* `/ansible`: Playbooks and inventory templates.
+* `/.github/workflows`: CI/CD pipeline definitions.
 
-## Architecture Overview
-![Project Diagram](<Auto mesh App.png>)    
+## 👤 Author
+**Nathaniel Edet** *Cloud & DevOps Engineer*
+
+---
+*This is a personal project showcasing automation proficiency and infrastructure-as-code best practices.*
