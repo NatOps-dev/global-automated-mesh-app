@@ -8,7 +8,7 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 ## 📄 Documentation
-[Download the Technical PDF Summary](./Nathaniel-Edet-Global-Mesh-README.pdf)
+[Download the Technical PDF Summary](./Nathaniel-Edet-Global-Mesh-Blueprint.pdf)
 
 ## 🌟 Project Overview
 This project serves as a comprehensive demonstration of modern Cloud Engineering practices. It automates the entire lifecycle of a containerized application—starting from a blank AWS account to a fully functional Kubernetes-orchestrated environment.
