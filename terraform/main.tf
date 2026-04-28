@@ -17,7 +17,3 @@ resource "aws_instance" "mesh_worker" {
   }
 }
 
-output "instance_public_ip" {
-  description = "The public IP of the mesh worker node"
-  value       = aws_instance.mesh_worker.public_ip
-}
