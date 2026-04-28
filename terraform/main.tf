@@ -4,12 +4,13 @@ resource "aws_instance" "mesh_worker" {
 
   associate_public_ip_address = true
 
-  # Linking to the networking built in vpc.tf and security.tf
-  subnet_id       = aws_subnet.mesh_public_subnet.id
-  security_groups = [aws_security_group.mesh_sg.id]
+  # FIX: Change 'security_groups' to 'vpc_security_group_ids' 
+  # This prevents Terraform from trying to recreate the instance unnecessarily
+  subnet_id                   = aws_subnet.mesh_public_subnet.id
+  vpc_security_group_ids      = [aws_security_group.mesh_sg.id]
   
-  # This reference now matches the resource name in security.tf
   key_name        = aws_key_pair.final-key.key_name
+  
   tags = {
     Name      = "mesh-worker-node"
     Project   = "Global-Automated-Mesh"
@@ -17,3 +18,7 @@ resource "aws_instance" "mesh_worker" {
   }
 }
 
+# Ensure this is at the VERY BOTTOM of your main.tf
+output "instance_public_ip" {
+  value = aws_instance.mesh_worker.public_ip
+}

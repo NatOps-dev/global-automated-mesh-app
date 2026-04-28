@@ -28,8 +28,10 @@ jobs:
           cd terraform
           terraform init
           terraform apply -auto-approve
-          # Use the correct output name: instance_public_ip
-          echo "NEW_IP=$(terraform output -raw instance_public_ip)" >> $GITHUB_ENV
+          
+          # This command extracts ONLY the IP address and ignores all warnings/pipes
+          RAW_IP=$(terraform output -json instance_public_ip | jq -r '.')
+          echo "NEW_IP=$RAW_IP" >> $GITHUB_ENV
 
       - name: Wait for SSH to be ready
         run: |
@@ -49,14 +51,19 @@ jobs:
             --extra-vars "TARGET_IP=${{ env.NEW_IP }}" \
             --private-key ./final-key \
             -u ubuntu
+
   build-and-push:
+    name: "Build and Push"
+    needs: terraform-ansible # Recommended: Ensure infra is up before building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
+          # Note: Ensure these secrets are named DOCKER_USERNAME and DOCKER_PASSWORD in GitHub
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -65,4 +72,5 @@ jobs:
         with:
           context: ./app
           push: true
+          # Note: This will tag the image as 'nath2025/mesh-api:latest'
           tags: ${{ secrets.DOCKER_USERNAME }}/mesh-api:latest
