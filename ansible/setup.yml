@@ -36,3 +36,23 @@
     - name: Expose Nginx via NodePort
       shell: /usr/local/bin/kubectl expose pod nginx-mesh --type=NodePort --port=80
       ignore_errors: yes
+    
+    - name: Create k8s directory on server
+      file:
+        path: /home/ubuntu/k8s
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Copy Database Manifest to Server
+      copy: # Added missing module name
+        src: ../k8s/ # Fixed indentation
+        dest: /home/ubuntu/k8s/
+        mode: '0644'
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Apply all Kubernetes Manifests
+      shell: |
+        export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+        kunbectl apply -f /home/ubuntu/k8s/
