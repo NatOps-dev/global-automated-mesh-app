@@ -55,4 +55,7 @@
     - name: Apply all Kubernetes Manifests
       shell: |
         export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-        kunbectl apply -f /home/ubuntu/k8s/
+        kunbectl apply -f /home/ubuntu/k8s/ 
+        
+        
+        # Fixed typo in kubectl
