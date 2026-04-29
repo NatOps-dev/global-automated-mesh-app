@@ -18,7 +18,7 @@ def hello():
             host=DB_HOST,
             database=DB_NAME,
             user=DB_USER,
-            password=DB_PASS
+            password=DB_PASSWORD
         )
         return "<h1>Project 2: Success!</h1><p>Connected to the PostgreSQL database successfully.</p>"
     except Exception as e:
