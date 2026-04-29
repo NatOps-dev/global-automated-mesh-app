@@ -8,7 +8,7 @@
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
 ## 📄 Documentation
-[Download the Technical PDF Summary](./Project_2_Complete_DevOps_Guide)
+[Download the Technical PDF Summary](./Project_2_Complete_DevOps_Guide.pdf)
 
 Global Automated Mesh - Phase 2: Production-Ready Infrastructure 
 
