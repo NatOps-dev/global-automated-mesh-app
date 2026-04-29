@@ -6,6 +6,7 @@ resource "aws_instance" "mesh_worker" {
     region = "us-west-2"
   }
 }
+}
 
 
 resource "aws_instance" "mesh_worker" {
