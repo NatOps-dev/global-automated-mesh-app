@@ -25,4 +25,4 @@ def hello():
         return f"<h1>Project 2: Failed!</h1><p>Failed to connect to the PostgreSQL database. Error: {str(e)}</p>"
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000) # Listen on all interfaces and port 5000
+    app.run(host='0.0.0.0', port=5000) 
