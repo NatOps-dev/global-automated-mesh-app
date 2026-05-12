@@ -10,7 +10,7 @@ resource "aws_security_group" "mesh_sg" {
   description = "Allow SSH and HTTP traffic"
   vpc_id      = aws_vpc.mesh_vpc.id
 
-  # Inbound Allow SSH (Port 22) for Ansible
+  # Inbound Allow SSH (Port 22) for Ansibles 
   ingress {
     from_port   = 22
     to_port     = 22
