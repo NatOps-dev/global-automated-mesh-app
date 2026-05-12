@@ -24,10 +24,10 @@ resource "aws_security_group" "mesh_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] # Allow from anywhere for web traffic. In production, you might want to restrict this further.
   }
 
-  # Inbound: Allow Kubernetes NodePort range
+  # Inbound: Allow Kubernetes NodePort range for Kubernetes services (30000-32767)
   ingress {
     from_port   = 30000
     to_port     = 32767
