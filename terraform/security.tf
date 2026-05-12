@@ -21,7 +21,7 @@ resource "aws_security_group" "mesh_sg" {
 
   # Inbound Allow HTTP (Port 80) for nginx
   ingress {
-    from_port   = 80
+    from_port   = 80 # Allow HTTP traffic for nginxg
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # Allow from anywhere for web traffic. In production, you might want to restrict this further.
